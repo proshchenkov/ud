@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - понедельник-сентября-21-2020   
+--  File created - четверг-октября-15-2020   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table ВОДИТЕЛЬ
@@ -29,8 +29,8 @@
 --------------------------------------------------------
 
   CREATE TABLE "PROSHCHENKOV"."ГРУЗ" 
-   (	"ID" NUMBER, 
-	"ДОГОВОР" NUMBER(30,0), 
+   (	"ID" NUMBER(10,0), 
+	"ДОГОВОР" NUMBER(10,0), 
 	"НАЗВАНИЕ" VARCHAR2(60 BYTE), 
 	"КОЛ_ВО" NUMBER(10,0), 
 	"ID_ЕД_ИЗМ" NUMBER(10,0)
@@ -46,7 +46,7 @@
 --------------------------------------------------------
 
   CREATE TABLE "PROSHCHENKOV"."ДОГОВОР" 
-   (	"НОМЕР" NUMBER, 
+   (	"НОМЕР" NUMBER(10,0), 
 	"МЕНЕДЖЕР" VARCHAR2(20 BYTE), 
 	"ВОДИТЕЛЬ" VARCHAR2(20 BYTE), 
 	"ЗАКАЗЧИК" NUMBER(10,0), 
@@ -69,7 +69,7 @@
 --------------------------------------------------------
 
   CREATE TABLE "PROSHCHENKOV"."ДОЛЖНОСТЬ" 
-   (	"ID" NUMBER(30,0), 
+   (	"ID" NUMBER(10,0), 
 	"НАЗВАНИЕ" VARCHAR2(60 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
@@ -203,7 +203,7 @@
 	"МАРКА" VARCHAR2(60 BYTE), 
 	"МОДЕЛЬ" VARCHAR2(60 BYTE), 
 	"ПРОБЕГ" NUMBER(10,0), 
-	"КАТЕГОРИЯ" VARCHAR2(20 BYTE)
+	"КАТЕГОРИЯ" VARCHAR2(2 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
  NOCOMPRESS LOGGING
@@ -496,22 +496,22 @@ Insert into PROSHCHENKOV."ТРАНСПОРТ" ("ГОСНОМЕР","МАРКА","
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ДОГОВОР
+--  Constraints for Table ЗАКАЗЧИК
 --------------------------------------------------------
 
-  ALTER TABLE "PROSHCHENKOV"."ДОГОВОР" MODIFY ("НОМЕР" NOT NULL ENABLE);
-  ALTER TABLE "PROSHCHENKOV"."ДОГОВОР" ADD CONSTRAINT "ДОГОВОР_PK" PRIMARY KEY ("НОМЕР")
+  ALTER TABLE "PROSHCHENKOV"."ЗАКАЗЧИК" MODIFY ("ПАСПОРТ" NOT NULL ENABLE);
+  ALTER TABLE "PROSHCHENKOV"."ЗАКАЗЧИК" ADD CONSTRAINT "ЗАКАЗЧИК_PK" PRIMARY KEY ("ПАСПОРТ")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ЗАКАЗЧИК
+--  Constraints for Table ДОГОВОР
 --------------------------------------------------------
 
-  ALTER TABLE "PROSHCHENKOV"."ЗАКАЗЧИК" MODIFY ("ПАСПОРТ" NOT NULL ENABLE);
-  ALTER TABLE "PROSHCHENKOV"."ЗАКАЗЧИК" ADD CONSTRAINT "ЗАКАЗЧИК_PK" PRIMARY KEY ("ПАСПОРТ")
+  ALTER TABLE "PROSHCHENKOV"."ДОГОВОР" MODIFY ("НОМЕР" NOT NULL ENABLE);
+  ALTER TABLE "PROSHCHENKOV"."ДОГОВОР" ADD CONSTRAINT "ДОГОВОР_PK" PRIMARY KEY ("НОМЕР")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
@@ -540,22 +540,22 @@ Insert into PROSHCHENKOV."ТРАНСПОРТ" ("ГОСНОМЕР","МАРКА","
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table КАТЕГОРИЯ
+--  Constraints for Table ЕД_ИЗМЕРЕНИЯ
 --------------------------------------------------------
 
-  ALTER TABLE "PROSHCHENKOV"."КАТЕГОРИЯ" MODIFY ("НАЗВАНИЕ" NOT NULL ENABLE);
-  ALTER TABLE "PROSHCHENKOV"."КАТЕГОРИЯ" ADD CONSTRAINT "КАТЕГОРИЯ_PK" PRIMARY KEY ("НАЗВАНИЕ")
+  ALTER TABLE "PROSHCHENKOV"."ЕД_ИЗМЕРЕНИЯ" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PROSHCHENKOV"."ЕД_ИЗМЕРЕНИЯ" ADD CONSTRAINT "ЕД_ИЗМЕРЕНИЯ_PK" PRIMARY KEY ("ID")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "USERS"  ENABLE;
 --------------------------------------------------------
---  Constraints for Table ЕД_ИЗМЕРЕНИЯ
+--  Constraints for Table КАТЕГОРИЯ
 --------------------------------------------------------
 
-  ALTER TABLE "PROSHCHENKOV"."ЕД_ИЗМЕРЕНИЯ" MODIFY ("ID" NOT NULL ENABLE);
-  ALTER TABLE "PROSHCHENKOV"."ЕД_ИЗМЕРЕНИЯ" ADD CONSTRAINT "ЕД_ИЗМЕРЕНИЯ_PK" PRIMARY KEY ("ID")
+  ALTER TABLE "PROSHCHENKOV"."КАТЕГОРИЯ" MODIFY ("НАЗВАНИЕ" NOT NULL ENABLE);
+  ALTER TABLE "PROSHCHENKOV"."КАТЕГОРИЯ" ADD CONSTRAINT "КАТЕГОРИЯ_PK" PRIMARY KEY ("НАЗВАНИЕ")
   USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
